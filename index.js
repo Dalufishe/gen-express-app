@@ -9,7 +9,7 @@ import { createExpressApp } from "./scripts/createExpressApp.js"
 import showTips from "./scripts/showTips.js"
 import askPackageManager from "./commands/askPackageManager.js"
 
-const VERSION = "0.0.5"
+const VERSION = "0.0.6"
 const LICENSE = "MIT"
 
 let projectName = null
