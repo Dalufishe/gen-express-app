@@ -2,7 +2,7 @@ import inquirer from "inquirer"
 
 export default async function askProjectName() {
 
-  let projectName = process.argv.slice(2, 3)[0] || ""
+  let projectName = ""
 
   // No project's name specified
   if (!projectName) {

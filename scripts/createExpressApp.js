@@ -38,32 +38,39 @@ const generateDotGitignore = (projectPath, projectName) => {
   return fsp.writeFile(path.join(projectPath, ".gitignore"), `.env`, "utf-8")
 }
 
-const fromTemplate = {
-  // JavaScript
-  "JavaScript": async (projectName) => {
+const createStructure = function () {
+
+  async function fromTemplate(projectName, template) {
     const projectPath = path.join(process.cwd(), projectName)
     if (fs.existsSync(projectPath)) {
       throw new Error(`Target directory "${projectName}" already exists.`)
     }
     // copy directory from templates to express-app
-    await fsp.cp(path.join(TEMPLATES_PATH, TEMPLATES["JavaScript"]), projectPath, { recursive: true })
+    await fsp.cp(path.join(TEMPLATES_PATH, template), projectPath, { recursive: true })
     await Promise.all([generatePackageJson(projectPath, projectName), generateDotGitignore(projectPath, projectName)])
-  },
-  // TypeScript
-  "TypeScript": () => {
-    throw new Error(`The feature "TypeScript" haasn't done yet. Sorry about that!`)
-  },
-  // JavaScript with MVC
-  "JavaScript_MVC": () => {
-    throw new Error(`The feature "JavaScript + MVC" haasn't done yet. Sorry about that!`)
-  },
-  // TypeScript with MVC
-  "TypeScript_MVC": () => {
-    throw new Error(`The feature "TypeScript + MVC" haasn't done yet. Sorry about that!`)
   }
+
+  return ({
+    // JavaScript
+    "javascript": async (projectName) => {
+      fromTemplate(projectName, "javascript")
+    },
+    // TypeScript
+    "typescript": () => {
+      throw new Error(`The feature "TypeScript" haasn't done yet. Sorry about that!`)
+    },
+    // JavaScript with MVC
+    "javascript-mvc": (projectName) => {
+      fromTemplate(projectName, "javascript-mvc")
+    },
+    // TypeScript with MVC
+    "typescript-mvc": () => {
+      throw new Error(`The feature "TypeScript + MVC" haasn't done yet. Sorry about that!`)
+    }
+  })
 }
 
-const fromPackageManager = {
+const installDependency = {
   "npm": (projectName) => {
     return exec(`cd ${projectName}&&npm i&&cd ${process.cwd()}`)
   },
@@ -83,9 +90,9 @@ export async function createExpressApp(projectName, template, packageManager) {
     spinner.start()
 
     // Creating app structure
-    await fromTemplate[template](projectName)
+    await createStructure()[template](projectName)
     // downloading dependency
-    await fromPackageManager[packageManager](projectName)
+    await installDependency[packageManager](projectName)
 
     spinner.success({ text: "Done." })
     console.log("")

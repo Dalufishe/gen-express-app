@@ -11,6 +11,9 @@ dependencies:
   chalk-animation:
     specifier: ^2.0.3
     version: 2.0.3
+  commander:
+    specifier: ^11.1.0
+    version: 11.1.0
   figlet:
     specifier: ^1.7.0
     version: 1.7.0
@@ -220,6 +223,11 @@ packages:
 
   /color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+    dev: false
+
+  /commander@11.1.0:
+    resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
+    engines: {node: '>=16'}
     dev: false
 
   /decamelize-keys@1.1.1:

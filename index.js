@@ -8,27 +8,29 @@ import askTemplate from "./commands/askTemplate.js"
 import { createExpressApp } from "./scripts/createExpressApp.js"
 import showTips from "./scripts/showTips.js"
 import askPackageManager from "./commands/askPackageManager.js"
-
-const APP = "GEN-EXPRESS-APP"
-const VERSION = "0.0.11"
-const LICENSE = "MIT"
+import runProgram from "./commands/runProgram.js"
+import { APP, LICENSE, VERSION } from "./constant/@.js"
 
 let projectName = null
 let template = null
 let packageManager = null
 
-await welcome()
+runProgram(async (program) => {
 
-projectName = await askProjectName()
-template = await askTemplate()
-packageManager = await askPackageManager()
+  await welcome()
 
-try {
-  await createExpressApp(projectName, template, packageManager)
-  showTips(projectName)
-} catch (err) {
-  //
-}
+  projectName = program.args[0] || await askProjectName()
+  template = program.opts()["template"] || await askTemplate()
+  packageManager = program.opts()["package"] || await askPackageManager()
+
+  try {
+    await createExpressApp(projectName, template, packageManager)
+    showTips(projectName)
+  } catch (err) {
+    //
+  }
+
+})
 
 
 async function welcome() {
