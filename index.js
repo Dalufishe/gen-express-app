@@ -9,7 +9,8 @@ import { createExpressApp } from "./scripts/createExpressApp.js"
 import showTips from "./scripts/showTips.js"
 import askPackageManager from "./commands/askPackageManager.js"
 
-const VERSION = "0.0.6"
+const APP = "GEN-EXPRESS-APP"
+const VERSION = "0.0.7"
 const LICENSE = "MIT"
 
 let projectName = null
@@ -34,7 +35,7 @@ async function main() {
 async function init() {
   // CREATE-EXPRESS-APP
   await new Promise((r) => {
-    figlet("CREATE-EXPRESS-APP", async (err, data) => {
+    figlet(APP, async (err, data) => {
       console.log(gradient.morning.multiline(data))
       console.log(`${chalk.yellow("-")} Version: ${VERSION}`)
       console.log(`${chalk.yellow("-")} License: ${LICENSE}`)
