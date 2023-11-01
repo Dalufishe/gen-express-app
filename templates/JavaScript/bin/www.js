@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import "../.express/dotenv"
+import "../.express/dotenv.js"
 
 /**
  * Module dependencies.
