@@ -10,7 +10,7 @@ import showTips from "./scripts/showTips.js"
 import askPackageManager from "./commands/askPackageManager.js"
 
 const APP = "GEN-EXPRESS-APP"
-const VERSION = "0.0.8"
+const VERSION = "0.0.9"
 const LICENSE = "MIT"
 
 let projectName = null
