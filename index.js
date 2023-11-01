@@ -10,29 +10,28 @@ import showTips from "./scripts/showTips.js"
 import askPackageManager from "./commands/askPackageManager.js"
 
 const APP = "GEN-EXPRESS-APP"
-const VERSION = "0.0.9"
+const VERSION = "0.0.10"
 const LICENSE = "MIT"
 
 let projectName = null
 let template = null
 let packageManager = null
 
-async function main() {
-  await init()
+await welcome()
 
-  projectName = await askProjectName()
-  template = await askTemplate()
-  packageManager = await askPackageManager()
+projectName = await askProjectName()
+template = await askTemplate()
+packageManager = await askPackageManager()
 
-  try {
-    await createExpressApp(projectName, template, packageManager)
-    showTips(projectName)
-  } catch (err) {
-    //
-  }
+try {
+  await createExpressApp(projectName, template, packageManager)
+  showTips(projectName)
+} catch (err) {
+  //
 }
 
-async function init() {
+
+async function welcome() {
   // CREATE-EXPRESS-APP
   await new Promise((r) => {
     figlet(APP, async (err, data) => {
@@ -45,4 +44,3 @@ async function init() {
   })
 }
 
-await main()

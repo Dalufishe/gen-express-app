@@ -16,13 +16,13 @@ const generatePackageJson = (projectPath, projectName) => {
     "private": true,
     "type": "module",
     "scripts": {
-      "dev": "nodemon ./bin/www.js",
-      "start": "node ./bin/www.js"
+      "dev": "set NODE_ENV=development&&nodemon ./.express/www.js",
+      "start": "set NODE_ENV=production&&node ./.express/www.js"
     },
     "dependencies": {
-      "dotenv": "^16.3.1",
       "cookie-parser": "~1.4.4",
       "debug": "~2.6.9",
+      "dotenv": "^16.3.1",
       "express": "~4.16.1",
       "http-errors": "~1.6.3",
       "morgan": "~1.9.1"
@@ -30,7 +30,8 @@ const generatePackageJson = (projectPath, projectName) => {
     "devDependencies": {
       "nodemon": "^3.0.1"
     }
-  }, null, 4), "utf-8")
+  }
+    , null, 4), "utf-8")
 }
 
 const generateDotGitignore = (projectPath, projectName) => {
