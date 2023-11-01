@@ -17,6 +17,7 @@ export default function runProgram(cb) {
     // package manager
     .addOption(new Option("-p, --package <package-name>", "choose your package manager")
       .choices([...PACKAGE_MANAGERS]))
+    //
     .action(() => { cb(program) })
     .parse(process.argv)
 }
