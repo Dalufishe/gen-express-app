@@ -53,7 +53,7 @@ const createStructure = function () {
   return ({
     // JavaScript
     "javascript": async (projectName) => {
-      fromTemplate(projectName, "javascript")
+      return fromTemplate(projectName, "javascript")
     },
     // TypeScript
     "typescript": () => {
@@ -61,7 +61,7 @@ const createStructure = function () {
     },
     // JavaScript with MVC
     "javascript-mvc": (projectName) => {
-      fromTemplate(projectName, "javascript-mvc")
+      return fromTemplate(projectName, "javascript-mvc")
     },
     // TypeScript with MVC
     "typescript-mvc": () => {
