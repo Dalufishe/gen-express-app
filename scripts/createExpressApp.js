@@ -25,7 +25,7 @@ const generatePackageJson = (projectPath, projectName) => {
       "express": "~4.16.1",
       "http-errors": "~1.6.3",
       "morgan": "~1.9.1",
-      "jade": "~1.11.0",
+      "pug": "2.0.0-beta11",
       "ejs": "~2.6.1",
       "hbs": "~4.0.4",
     },
