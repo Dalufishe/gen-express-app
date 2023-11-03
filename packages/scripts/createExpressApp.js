@@ -43,76 +43,31 @@ const generateDotGitignore = (projectPath) => {
   `, "utf-8")
 }
 
-const createStructure = async function (template, viewEngine, projectName) {
+const createStructure = async function (template, viewEngine, projectName, projectPath) {
 
-  async function fromBase(projectName) {
-
-    const projectPath = path.join(process.cwd(), projectName)
-
-    if (fs.existsSync(projectPath) && fs.readdirSync(projectPath).length !== 0) {
-      throw new Error(`Target directory "${projectName}" isn't empty.`)
-    }
+  async function fromBase() {
 
     // copy directory from templates/base to express-app
     await fsp.cp(path.join(TEMPLATES_PATH, "base"), projectPath, { recursive: true })
 
   }
 
-  async function fromTemplate(projectName, template) {
-
-    const projectPath = path.join(process.cwd(), projectName)
-
+  async function fromTemplate() {
 
     // merge directory from templates/language to express-app
     await fsp.cp(path.join(TEMPLATES_PATH, "language", template), projectPath, { recursive: true })
     await Promise.all([generatePackageJson(projectPath, projectName), generateDotGitignore(projectPath, projectName)])
   }
 
-  async function fromViewEngine(projectName, viewEngine) {
-
-    const projectPath = path.join(process.cwd(), projectName)
+  async function fromViewEngine() {
 
     // merge directory from templates/view-engine to express-app
     await fsp.cp(path.join(TEMPLATES_PATH, "view-engine", viewEngine), projectPath, { recursive: true })
   }
 
-  const templateStrategry = {
-    // JavaScript
-    "javascript": (projectName) => {
-      return fromTemplate(projectName, "javascript")
-    },
-    // TypeScript
-    "typescript": () => {
-      throw new Error(`The feature "TypeScript" hasn't done yet. Sorry about that!`)
-    },
-    // JavaScript with MVC
-    "javascript-mvc": (projectName) => {
-      return fromTemplate(projectName, "javascript-mvc")
-    },
-    // TypeScript with MVC
-    "typescript-mvc": () => {
-      throw new Error(`The feature "TypeScript + MVC" hasn't done yet. Sorry about that!`)
-    }
-  }
-
-  const viewEngineStrategry = {
-    "no-view": () => {
-      return fromViewEngine(projectName, "no-view")
-    },
-    "ejs": () => {
-      return fromViewEngine(projectName, "ejs")
-    },
-    "pug": () => {
-      return fromViewEngine(projectName, "pug")
-    },
-    "hbs": () => {
-      return fromViewEngine(projectName, "hbs")
-    },
-  }
-
-  await fromBase(projectName)
-  await templateStrategry[template](projectName)
-  await viewEngineStrategry[viewEngine]()
+  await fromBase()
+  await fromTemplate()
+  await fromViewEngine()
 
 }
 
@@ -133,10 +88,12 @@ export async function createExpressApp(projectName, template, viewEngine, packag
 
   try {
 
+    const PROJECT_PATH = path.join(process.cwd(), projectName)
+
     spinner.start()
 
     // Creating app structure
-    await createStructure(template, viewEngine, projectName)
+    await createStructure(template, viewEngine, projectName, PROJECT_PATH)
     // downloading dependency
     await installDependency[packageManager](projectName)
 

@@ -11,6 +11,7 @@ import askPackageManager from "./commands/askPackageManager.js"
 import runProgram from "./commands/runProgram.js"
 import { APP, LICENSE, VERSION } from "./constant/@.js"
 import askViewEngine from "./commands/askViewEngine.js"
+import isProjectAlreadyExists from "./scripts/isProjectAlreadyExists.js"
 
 let projectName = null
 let template = null
@@ -22,6 +23,12 @@ runProgram(async (program) => {
   await welcome()
 
   projectName = program.args[0] || await askProjectName()
+
+  while (isProjectAlreadyExists(projectName)) {
+    console.log(`${chalk.yellow(">")} Target directory "${projectName}" is not empty. Please re-enter the project name.`)
+    await askProjectName()
+  }
+
   template = program.opts()["template"] || await askTemplate()
   viewEngine = program.opts()["view"] || await askViewEngine()
   packageManager = program.opts()["package"] || await askPackageManager()
@@ -43,6 +50,7 @@ async function welcome() {
       console.log(gradient.morning.multiline(data))
       console.log(`${chalk.yellow("-")} Version: ${VERSION}`)
       console.log(`${chalk.yellow("-")} License: ${LICENSE}`)
+      console.log(`${chalk.yellow("-")} Github: ${"https://github.com/Dalufishe/gen-express-app"}`)
       console.log("")
       r()
     })
