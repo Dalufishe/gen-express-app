@@ -1,6 +1,6 @@
 {
   "name": "gen-express-app",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "",
   "main": "index.js",
   "type": "module",
