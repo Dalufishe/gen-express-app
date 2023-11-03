@@ -1,4 +1,7 @@
 # Gen Express App
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+![Make With Love](https://img.shields.io/badge/make_with_%E2%9D%A4%EF%B8%8F-white)
+![Version](https://img.shields.io/badge/Version-0.1.1-purple)
 
 一款簡單易用，能夠替代 express-generator 的 Express 應用程式創建工具
 
@@ -50,10 +53,6 @@ npx gen-express-app express-app --view=ejs --package=pnpm
 ```bash
 npx gen-express-app --help
 ```
-
-### 條款
-
-[MIT](./LICENSE)
 
 ### 連結
 
