@@ -1,12 +1,14 @@
 # Gen Express App
 
+[English](/README.md) / [中文文檔](/docs/locales/tchinese/README.md)
+
 Alternative to express-generator, a easy-to-use tool for creating express applications.
 
 - interactive CLI Tool.
 - build-in TypeScript support.
 - ESM module support.
 
-![]("./../docs/gen-express-app.png)
+![](/docs/gen-express-app.png)
 
 ### Quick Start
 
@@ -29,7 +31,7 @@ Interactive interface is super easy to use:
 ```bash
 npx gen-express-app
 # or specify project-name
-npx gen-express-app express-app 
+npx gen-express-app express-app
 ```
 
 follow the steps on CLI then you can head into your express application.
@@ -45,7 +47,6 @@ npx gen-express-app express-app --view=ejs --package=pnpm
 ```
 
 - get help:
-
 
 ```bash
 npx gen-express-app --help
