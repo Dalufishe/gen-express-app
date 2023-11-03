@@ -13,5 +13,6 @@ export default async function askTemplate() {
     },
     default: Object.keys(TEMPLATES)[0]
   })
+
   return TEMPLATES[iq.template]
 }

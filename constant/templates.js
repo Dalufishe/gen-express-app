@@ -1,7 +1,7 @@
 
 export const TEMPLATES = {
   'JavaScript': "javascript",
-  'TypeScript': "typescript",
+  'TypeScript (not support yet)': "typescript",
   'JavaScript + MVC': "javascript-mvc",
-  'TypeScript + MVC': "typescript-mvc",
+  'TypeScript + MVC (not support yet)': "typescript-mvc",
 }

@@ -10,5 +10,6 @@ export default async function askPackageManager() {
     choices: [...PACKAGE_MANAGERS],
     default: PACKAGE_MANAGERS[0]
   })
+
   return iq.package_manager
 }

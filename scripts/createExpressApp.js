@@ -3,11 +3,10 @@ import fsp from "fs/promises"
 import fs from "fs"
 import path from "path"
 import { __dirname } from "../utils/__dirname.js"
-import { TEMPLATES } from "../constant/templates.js"
 import { createSpinner } from "nanospinner"
 import exec from "../utils/exec.js"
 
-const TEMPLATES_PATH = path.join(__dirname, "../", "templates")
+const TEMPLATES_PATH = path.join(__dirname(import.meta.url), "../", "templates")
 
 const generatePackageJson = (projectPath, projectName) => {
   return fsp.writeFile(path.join(projectPath, "package.json"), JSON.stringify({
@@ -25,7 +24,10 @@ const generatePackageJson = (projectPath, projectName) => {
       "dotenv": "^16.3.1",
       "express": "~4.16.1",
       "http-errors": "~1.6.3",
-      "morgan": "~1.9.1"
+      "morgan": "~1.9.1",
+      "jade": "~1.11.0",
+      "ejs": "~2.6.1",
+      "hbs": "~4.0.4",
     },
     "devDependencies": {
       "nodemon": "^3.0.1"
@@ -34,30 +36,42 @@ const generatePackageJson = (projectPath, projectName) => {
     , null, 4), "utf-8")
 }
 
-const generateDotGitignore = (projectPath, projectName) => {
-  return fsp.writeFile(path.join(projectPath, ".gitignore"), `.env`, "utf-8")
+const generateDotGitignore = (projectPath) => {
+  return fsp.writeFile(path.join(projectPath, ".gitignore"), `
+  .env
+  node_modules
+  `, "utf-8")
 }
 
-const createStructure = function () {
+const createStructure = async function (template, viewEngine, projectName) {
 
   async function fromTemplate(projectName, template) {
+
     const projectPath = path.join(process.cwd(), projectName)
     if (fs.existsSync(projectPath)) {
       throw new Error(`Target directory "${projectName}" already exists.`)
     }
-    // copy directory from templates to express-app
-    await fsp.cp(path.join(TEMPLATES_PATH, template), projectPath, { recursive: true })
+    // copy directory from templates/language to express-app
+    await fsp.cp(path.join(TEMPLATES_PATH, "language", template), projectPath, { recursive: true })
     await Promise.all([generatePackageJson(projectPath, projectName), generateDotGitignore(projectPath, projectName)])
   }
 
-  return ({
+  async function fromViewEngine(projectName, viewEngine) {
+
+    const projectPath = path.join(process.cwd(), projectName)
+
+    // merge directory from templates/view-engine to express-app
+    await fsp.cp(path.join(TEMPLATES_PATH, "view-engine", viewEngine), projectPath, { recursive: true })
+  }
+
+  const templateStrategry = {
     // JavaScript
-    "javascript": async (projectName) => {
+    "javascript": (projectName) => {
       return fromTemplate(projectName, "javascript")
     },
     // TypeScript
     "typescript": () => {
-      throw new Error(`The feature "TypeScript" haasn't done yet. Sorry about that!`)
+      throw new Error(`The feature "TypeScript" hasn't done yet. Sorry about that!`)
     },
     // JavaScript with MVC
     "javascript-mvc": (projectName) => {
@@ -65,9 +79,28 @@ const createStructure = function () {
     },
     // TypeScript with MVC
     "typescript-mvc": () => {
-      throw new Error(`The feature "TypeScript + MVC" haasn't done yet. Sorry about that!`)
+      throw new Error(`The feature "TypeScript + MVC" hasn't done yet. Sorry about that!`)
     }
-  })
+  }
+
+  const viewEngineStrategry = {
+    "no-view": () => {
+      return fromViewEngine(projectName, "no-view")
+    },
+    "ejs": () => {
+      return fromViewEngine(projectName, "ejs")
+    },
+    "pug": () => {
+      return fromViewEngine(projectName, "pug")
+    },
+    "hbs": () => {
+      return fromViewEngine(projectName, "hbs")
+    },
+  }
+
+  await templateStrategry[template](projectName)
+  await viewEngineStrategry[viewEngine]()
+
 }
 
 const installDependency = {
@@ -82,7 +115,7 @@ const installDependency = {
   },
 }
 
-export async function createExpressApp(projectName, template, packageManager) {
+export async function createExpressApp(projectName, template, viewEngine, packageManager) {
   const spinner = createSpinner("Creating project...")
 
   try {
@@ -90,7 +123,7 @@ export async function createExpressApp(projectName, template, packageManager) {
     spinner.start()
 
     // Creating app structure
-    await createStructure()[template](projectName)
+    await createStructure(template, viewEngine, projectName)
     // downloading dependency
     await installDependency[packageManager](projectName)
 

@@ -10,9 +10,11 @@ import showTips from "./scripts/showTips.js"
 import askPackageManager from "./commands/askPackageManager.js"
 import runProgram from "./commands/runProgram.js"
 import { APP, LICENSE, VERSION } from "./constant/@.js"
+import askViewEngine from "./commands/askViewEngine.js"
 
 let projectName = null
 let template = null
+let viewEngine = null
 let packageManager = null
 
 runProgram(async (program) => {
@@ -21,10 +23,11 @@ runProgram(async (program) => {
 
   projectName = program.args[0] || await askProjectName()
   template = program.opts()["template"] || await askTemplate()
+  viewEngine = program.opts()["view"] || await askViewEngine()
   packageManager = program.opts()["package"] || await askPackageManager()
 
   try {
-    await createExpressApp(projectName, template, packageManager)
+    await createExpressApp(projectName, template, viewEngine, packageManager)
     showTips(projectName)
   } catch (err) {
     //
