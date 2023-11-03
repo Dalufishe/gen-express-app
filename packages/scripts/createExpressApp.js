@@ -45,13 +45,25 @@ const generateDotGitignore = (projectPath) => {
 
 const createStructure = async function (template, viewEngine, projectName) {
 
-  async function fromTemplate(projectName, template) {
+  async function fromBase(projectName) {
 
     const projectPath = path.join(process.cwd(), projectName)
+
     if (fs.existsSync(projectPath)) {
       throw new Error(`Target directory "${projectName}" already exists.`)
     }
-    // copy directory from templates/language to express-app
+
+    // copy directory from templates/base to express-app
+    await fsp.cp(path.join(TEMPLATES_PATH, "base"), projectPath, { recursive: true })
+
+  }
+
+  async function fromTemplate(projectName, template) {
+
+    const projectPath = path.join(process.cwd(), projectName)
+
+
+    // merge directory from templates/language to express-app
     await fsp.cp(path.join(TEMPLATES_PATH, "language", template), projectPath, { recursive: true })
     await Promise.all([generatePackageJson(projectPath, projectName), generateDotGitignore(projectPath, projectName)])
   }
@@ -98,6 +110,7 @@ const createStructure = async function (template, viewEngine, projectName) {
     },
   }
 
+  await fromBase(projectName)
   await templateStrategry[template](projectName)
   await viewEngineStrategry[viewEngine]()
 
