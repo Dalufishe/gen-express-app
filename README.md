@@ -2,7 +2,7 @@
 
 [English](/README.md) / [中文文檔](/docs/locales/tchinese/README.md)
 
-Alternative to express-generator, a easy-to-use tool for creating express applications.
+Alternative to express-generator, an easy-to-use tool for creating express applications.
 
 - interactive CLI Tool.
 - build-in TypeScript support.
