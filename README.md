@@ -1,22 +1,55 @@
-# gen-express-app
+# Gen Express App
 
 Alternative to express-generator, a easy-to-use tool for creating express applications.
+
+- interactive CLI Tool.
+- build-in TypeScript support.
+- ESM module support.
+
+![]("./../docs/gen-express-app.png)
 
 ### Quick Start
 
 ```bash
-npx gen-express-app my-app
+npx gen-express-app@latest my-app
 cd my-app
 npm run dev
 ```
 
 ### Why gen-express-app ?
 
-- built-in TypeScript support.
-- ESM / Commonjs support.
-- development server & Hot reload.
-- wide variety of templates for you to choose from.
-- much better user experience.
+`gen-expressp-app` is an Express application generating tool inspired by [express-generator](https://github.com/expressjs/generator), retaining most of its excellent features and extending and improving where it falls short. We fully support `ESM module` and provide `TypeScript` templates to choose from, as well as an easy-to-use `interactive interface`. These are all cool features that express-generator does not have!
+
+### Usage
+
+#### Interactive Interface
+
+Interactive interface is super easy to use:
+
+```bash
+npx gen-express-app
+# or specify project-name
+npx gen-express-app express-app 
+```
+
+follow the steps on CLI then you can head into your express application.
+
+#### Command Line Options
+
+You can also use the command line options, just like the way you did before.
+
+- example:
+
+```bash
+npx gen-express-app express-app --view=ejs --package=pnpm
+```
+
+- get help:
+
+
+```bash
+npx gen-express-app --help
+```
 
 ### License
 
