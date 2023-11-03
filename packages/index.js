@@ -26,7 +26,7 @@ runProgram(async (program) => {
 
   while (isProjectAlreadyExists(projectName)) {
     console.log(`${chalk.yellow(">")} Target directory "${projectName}" is not empty. Please re-enter the project name.`)
-    await askProjectName()
+    projectName = await askProjectName()
   }
 
   template = program.opts()["template"] || await askTemplate()
