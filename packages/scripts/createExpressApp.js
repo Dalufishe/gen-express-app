@@ -1,9 +1,8 @@
 
 import fsp from "fs/promises"
-import fs from "fs"
 import path from "path"
-import { __dirname } from "../utils/__dirname.js"
 import { createSpinner } from "nanospinner"
+import { __dirname } from "../utils/__dirname.js"
 import exec from "../utils/exec.js"
 
 const TEMPLATES_PATH = path.join(__dirname(import.meta.url), "../", "templates")
