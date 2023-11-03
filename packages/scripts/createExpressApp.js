@@ -49,8 +49,8 @@ const createStructure = async function (template, viewEngine, projectName) {
 
     const projectPath = path.join(process.cwd(), projectName)
 
-    if (fs.existsSync(projectPath)) {
-      throw new Error(`Target directory "${projectName}" already exists.`)
+    if (fs.existsSync(projectPath) && fs.readdirSync(projectPath).length !== 0) {
+      throw new Error(`Target directory "${projectName}" isn't empty.`)
     }
 
     // copy directory from templates/base to express-app
@@ -143,6 +143,7 @@ export async function createExpressApp(projectName, template, viewEngine, packag
     spinner.success({ text: "Done." })
     console.log("")
   } catch (err) {
+
     spinner.error({ text: err })
     console.log("")
     throw new Error(err)
