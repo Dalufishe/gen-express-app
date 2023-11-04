@@ -2,10 +2,10 @@
 import fsp from "fs/promises"
 import path from "path"
 import { createSpinner } from "nanospinner"
-import { __dirname } from "../utils/__dirname.js"
+import { dirname } from "dirname-filename-esm"
 import exec from "../utils/exec.js"
 
-const TEMPLATES_PATH = path.join(__dirname(import.meta.url), "../", "templates")
+const TEMPLATES_PATH = path.join(dirname(import.meta), "../", "templates")
 
 const generatePackageJson = (projectPath, projectName) => {
   return fsp.writeFile(path.join(projectPath, "package.json"), JSON.stringify({
@@ -18,6 +18,7 @@ const generatePackageJson = (projectPath, projectName) => {
       "start": "set NODE_ENV=production&&node ./.express/www.js"
     },
     "dependencies": {
+      "dirname-filename-esm": "^1.1.1",
       "cookie-parser": "~1.4.4",
       "debug": "~2.6.9",
       "dotenv": "^16.3.1",

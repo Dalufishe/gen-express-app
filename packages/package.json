@@ -1,6 +1,6 @@
 {
   "name": "gen-express-app",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -25,6 +25,7 @@
     "gradient-string": "^2.0.2",
     "inquirer": "^9.2.11",
     "lodash": "^4.17.21",
-    "nanospinner": "^1.1.0"
+    "nanospinner": "^1.1.0",
+    "dirname-filename-esm": "^1.1.1"
   }
 }

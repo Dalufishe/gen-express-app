@@ -1,10 +1,9 @@
 import express from 'express';
 import path from 'path';
-import { __dirname } from "../.express/__dirname.js"
-
 import createError from 'http-errors';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import { dirname } from "dirname-filename-esm"
 
 import usersRouter from './routers/users.js';
 
@@ -12,7 +11,7 @@ import usersRouter from './routers/users.js';
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname(import.meta.url), 'views'));
+app.set('views', path.join(dirname(import.meta), 'views'));
 app.set('view engine', 'pug');
 
 // plugins
@@ -20,7 +19,7 @@ app.use(logger(process.env.NODE_ENV === "production" ? "common" : "dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname(import.meta.url), "../", 'public')));
+app.use(express.static(path.join(dirname(import.meta), "../", 'public')));
 
 /** You write your code here */
 
