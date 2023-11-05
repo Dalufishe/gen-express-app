@@ -1,8 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "pub": "cd packages&&npm publish&&cd ..",
-    "test": "jest --watchAll"
+    "pub": "cd packages&&npm publish&&cd .."
   },
   "keywords": [],
   "author": "",

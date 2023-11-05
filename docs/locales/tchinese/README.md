@@ -2,11 +2,12 @@
 
 [English](/README.md) / [中文文檔](/docs/locales/tchinese/README.md)
 
-一款簡單易用，能夠取代 express-generator 的 Express 應用程式創建工具。
+一款簡單易用，能夠取代 express-generator 的現代化 Express 應用生成工具。
 
 - 交互式命令行介面
 - 內置支援 TypeScript
 - 支援 ESM 模組化語法
+- 更加現代化的項目結構
 
 ![](/docs/gen-express-app.png)
 
@@ -36,9 +37,9 @@ npx gen-express-app express-app
 
 運行以上指令便可以開啟您的 Express 應用程式。
 
-#### 指令選項
+#### 參數式選項
 
-亦可按照您慣用的方式來使用指令行介面，只需要執行：
+亦可按照您慣用的方式來使用參數式寫法，只需要執行：
 
 - 例如：
 
