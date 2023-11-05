@@ -14,8 +14,8 @@ const generatePackageJson = (projectPath, projectName) => {
     "private": true,
     "type": "module",
     "scripts": {
-      "dev": "set NODE_ENV=development&&nodemon ./.express/www.js",
-      "start": "set NODE_ENV=production&&node ./.express/www.js"
+      "dev": "set NODE_ENV=development&&nodemon --experimental-specifier-resolution=node ./.express/www.js",
+      "start": "set NODE_ENV=production&&node --experimental-specifier-resolution=node ./.express/www.js"
     },
     "dependencies": {
       "dirname-filename-esm": "^1.1.1",
