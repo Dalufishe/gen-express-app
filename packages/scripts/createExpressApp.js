@@ -7,35 +7,6 @@ import exec from "../utils/exec.js"
 
 const TEMPLATES_PATH = path.join(dirname(import.meta), "../", "templates")
 
-const generatePackageJson = (projectPath, projectName) => {
-  return fsp.writeFile(path.join(projectPath, "package.json"), JSON.stringify({
-    "name": projectName,
-    "version": "0.0.0",
-    "private": true,
-    "type": "module",
-    "scripts": {
-      "dev": "set NODE_ENV=development&&nodemon --experimental-specifier-resolution=node ./.express/www.js",
-      "start": "set NODE_ENV=production&&node --experimental-specifier-resolution=node ./.express/www.js"
-    },
-    "dependencies": {
-      "dirname-filename-esm": "^1.1.1",
-      "cookie-parser": "~1.4.4",
-      "debug": "~2.6.9",
-      "dotenv": "^16.3.1",
-      "express": "~4.16.1",
-      "http-errors": "~1.6.3",
-      "morgan": "~1.9.1",
-      "pug": "2.0.0-beta11",
-      "ejs": "~2.6.1",
-      "hbs": "~4.0.4",
-    },
-    "devDependencies": {
-      "nodemon": "^3.0.1"
-    }
-  }
-    , null, 4), "utf-8")
-}
-
 const generateDotGitignore = (projectPath) => {
   return fsp.writeFile(path.join(projectPath, ".gitignore"), `
   .env
@@ -56,13 +27,21 @@ const createStructure = async function (template, viewEngine, projectName, proje
 
     // merge directory from templates/language to express-app
     await fsp.cp(path.join(TEMPLATES_PATH, "language", template), projectPath, { recursive: true })
-    await Promise.all([generatePackageJson(projectPath, projectName), generateDotGitignore(projectPath, projectName)])
+    await Promise.all([generateDotGitignore(projectPath, projectName)])
   }
 
   async function fromViewEngine() {
 
     // merge directory from templates/view-engine to express-app
     await fsp.cp(path.join(TEMPLATES_PATH, "view-engine", viewEngine), projectPath, { recursive: true })
+
+    // delete js, ts file
+    if (template === "javascript" || template === "javascript-mvc") {
+      await fsp.unlink(path.join(projectPath, "src", "app.ts"))
+    } else {
+      await fsp.unlink(path.join(projectPath, "src", "app.js"))
+    }
+
   }
 
   await fromBase()
