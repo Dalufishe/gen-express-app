@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
-import "./init/index.js"
+import "./init/index"
 
 /**
  * Module dependencies.
  */
 
-import app from '../src/app.js';
+import app from '../src/app';
 import debug from 'debug';
 import http from 'http';
-import { PORT } from "./init/server.js";
+import { PORT } from "./init/server";
 const serverDebug = debug('server:server')
 
 /**

@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import { dirname } from "dirname-filename-esm"
 
-import usersRouter from './routers/users.js';
+import usersRouter from './routers/users';
 
 // app
 const app = express();

@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import { dirname } from "dirname-filename-esm"
 
-import usersRouter from './routers/users.js';
+import usersRouter from './routers/users';
 
 // app
 const app = express();
@@ -23,7 +23,7 @@ app.use(express.static(path.join(dirname(import.meta), "../", 'public')));
 
 // routers
 app.get("/", (req, res) => {
-  res.render("index", { title: 'Express' })
+  res.render("index")
 })
 app.use('/users', usersRouter);
 

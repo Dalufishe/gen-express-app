@@ -1,4 +1,4 @@
-import { PORT } from "./server.js"
+import { PORT } from "./server"
 
 console.log("")
 // log node-env

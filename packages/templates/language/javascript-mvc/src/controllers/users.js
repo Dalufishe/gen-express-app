@@ -1,4 +1,4 @@
-import usersModel from "../models/users.js";
+import usersModel from "../models/users";
 
 const userController = {
   getUsers: (req, res, next) => {
