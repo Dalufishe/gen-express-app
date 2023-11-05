@@ -1,5 +1,7 @@
 # Gen Express App
 
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) ![npm](https://img.shields.io/npm/v/gen-express-app) ![node](https://img.shields.io/node/v/gen-express-app) ![Make With Love](https://img.shields.io/badge/make_with_%E2%9D%A4%EF%B8%8F-white)
+
 [English](/README.md) / [中文文檔](/docs/locales/tchinese/README.md)
 
 Alternative to express-generator, an easy-to-use tool for creating modern express applications.
