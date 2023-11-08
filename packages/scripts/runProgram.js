@@ -4,11 +4,8 @@ import { VERSION } from "../constant/@.js"
 import { PACKAGE_MANAGERS } from "../constant/packageManagers.js"
 import { TEMPLATES } from "../constant/templates.js"
 import { VIEW_ENGINES } from "../constant/viewEngines.js"
-import { exec } from "child_process"
-import fsp from "fs/promises"
-import path from "path"
 import { dev } from "../commands/dev.js"
-import { start } from "repl"
+import { start } from "../commands/start.js"
 
 export default function runProgram(cb) {
 
@@ -28,8 +25,9 @@ export default function runProgram(cb) {
     .addOption(new Option("-p, --package <package-name>", "choose package manager")
       .choices([...PACKAGE_MANAGERS]))
     //
-    .action(() => { cb(program) })
-
+    .action(() => {
+      cb(program)
+    })
 
   dev(program)
   start(program)
