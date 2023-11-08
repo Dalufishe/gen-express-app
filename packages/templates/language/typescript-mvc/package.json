@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "set NODE_ENV=development&&nodemon -e ts --exec \"tsc && node --experimental-specifier-resolution=node .express/www.js\"",
-    "start": "tsc&&set NODE_ENV=production&&node --experimental-specifier-resolution=node .express/www.js"
+    "dev": "gen-express-app dev .express/www.js --typescript",
+    "start": "gen-express-app start .express/www.js --typescript"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -20,6 +20,7 @@
     "pug": "2.0.0-beta11"
   },
   "devDependencies": {
+    "gen-express-app": "^0.2.5",
     "typescript": "^5.2.2",
     "nodemon": "^3.0.1",
     "@types/cookie-parser": "^1.4.5",

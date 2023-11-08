@@ -11,7 +11,7 @@ import usersRouter from "./routers/users";
 const app = express();
 
 // view engine setup
-app.set("views", path.join(dirname(import.meta), "../", "src", "views"));
+app.set("views", path.join(dirname(import.meta), "views"));
 app.set("view engine", "ejs");
 
 // plugins
