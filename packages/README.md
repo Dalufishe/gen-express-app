@@ -39,6 +39,8 @@ npx gen-express-app express-app
 
 follow the steps on CLI then you can head into your express application.
 
+![](/docs/interative-cli.png)
+
 ### Command Line Options
 
 You can also use the command line options, just like the way you did before.
@@ -49,10 +51,22 @@ You can also use the command line options, just like the way you did before.
 npx gen-express-app express-app --view=ejs --package=pnpm
 ```
 
-- get help:
+- get help by typing `--help`:
 
 ```bash
 npx gen-express-app --help
+
+Usage: gen-express-app [project-name]
+
+Arguments:
+  project-name                    name for your express app
+
+Options:
+  -V, --version                   output the current version
+  -t, --template <template-name>  choose express template (choices: "javascript", "typescript", "javascript-mvc", "typescript-mvc")
+  -v, --view <view-engine>        choose view engine (choices: "no-view", "ejs", "pug", "hbs")
+  -p, --package <package-name>    choose package manager (choices: "npm", "yarn", "pnpm")
+  -h, --help                      display help for command
 ```
 
 ## Contributing

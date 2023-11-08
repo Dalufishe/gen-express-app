@@ -1,6 +1,6 @@
 {
   "name": "gen-express-app",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Alternative to express-generator, an easy-to-use tool for creating modern express applications.",
   "main": "index.js",
   "type": "module",
