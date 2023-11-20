@@ -1,6 +1,5 @@
 import express from 'express';
 import path from 'path';
-import createError from 'http-errors';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import { dirname } from "dirname-filename-esm"
@@ -17,34 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(dirname(import.meta), "../", 'public')));
 
-/** You write your code here */
-
-
-
 // routers
-app.get("/", (req, res) => {
-  res.render("index")
-})
 app.use('/users', usersRouter);
-
-
-
-/** You write your code here */
-
-// error handler
-app.use((req, res, next) => {
-  next(createError(404));
-});
-
-app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = process.env.NODE_ENV === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
 
 export default app;
