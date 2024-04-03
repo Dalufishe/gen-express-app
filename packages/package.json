@@ -1,6 +1,6 @@
 {
   "name": "gen-express-app",
-  "version": "0.2.9",
+  "version": "0.2.10-RC1",
   "description": "Alternative to express-generator, an easy-to-use tool for creating modern express applications.",
   "main": "index.js",
   "type": "module",
@@ -25,7 +25,9 @@
   ],
   "author": "Dalufishe",
   "license": "MIT",
-  "bin": "./index.js",
+  "bin": {
+    "eg": "./index.js"
+  },
   "dependencies": {
     "chalk": "^5.3.0",
     "chalk-animation": "^2.0.3",

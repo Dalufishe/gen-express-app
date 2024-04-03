@@ -6,15 +6,17 @@ import { TEMPLATES } from "../constant/templates.js"
 import { VIEW_ENGINES } from "../constant/viewEngines.js"
 import { dev } from "../commands/dev.js"
 import { start } from "../commands/start.js"
+import { newProject, newProjectInteractive } from "../commands/new.project.js"
+
 
 export default function runProgram(cb) {
 
   program
-    .name("gen-express-app")
-    .usage("[project-name]")
+    .name("eg")
+    .usage("[command]")
     .version(VERSION, "-V, --version", "output the current version")
-    // project name
-    .argument("[project-name]", "name for your express app")
+    // command type
+    .argument("[command]", "name of usage command (new / generate <component_type> )")
     // template
     .addOption(new Option("-t, --template <template-name>", "choose express template")
       .choices([..._.map(TEMPLATES, (v) => v)]))
@@ -31,6 +33,8 @@ export default function runProgram(cb) {
 
   dev(program)
   start(program)
+  newProject(program)
+  newProjectInteractive(program)
 
   program.parse(process.argv)
 
