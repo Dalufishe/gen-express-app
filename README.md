@@ -2,8 +2,6 @@
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) ![npm](https://img.shields.io/npm/v/gen-express-app) ![node](https://img.shields.io/node/v/gen-express-app) ![Make With Love](https://img.shields.io/badge/make_with_%E2%9D%A4%EF%B8%8F-white)
 
-[English](/README.md) / [中文文檔](/docs/locales/tchinese/README.md)
-
 Alternative to express-generator, an easy-to-use tool for creating modern express applications.
 
 - Interactive CLI Tool.
@@ -28,18 +26,23 @@ On Windows client computers, the execution of PowerShell scripts is disabled by 
 ```bash
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
+
 Carefully read the message displayed after executing the command and follow the instructions. Make sure you understand the implications of setting an execution policy.
+
 ## Basic usage
+
 To create a new workspace and initial starter app:
 
 1. Run the CLI command `eg new` and provide the name `express-app`, as shown here:
 
-```bash 
+```bash
 eg new express-app
 ```
 
 ### Note if you cannot using `eg` as global command
+
 If u have an error on using `eg` as global command, just try to use command below:
+
 ```bash
 npx gen-express-app@latest new express-app
 ```
@@ -51,13 +54,18 @@ The CLI installs the necessary ExpressJS npm packages and other dependencies. Th
 The CLI creates a new workspace and a simple project`s files, ready to run.
 
 ## Run generated ExpressJS project
+
 To run generated project just use one of this commands below:
+
 ### Production mode
+
 ```bash
 cd express-app
 npm run start
 ```
+
 ### Development mode
+
 ```bash
 cd express-app
 npm run dev
@@ -118,6 +126,10 @@ Commands:
 ## Contributing
 
 If you are interested in contributing to the development of the `Gen Express App`, we would be happy to receive your contributions! You can start by checking the `issues` to see if there are any problems that need to be addressed (such as new features or unresolved errors), `fork` the project, and submit a `pull request` to participate in the contribution.
+
+- @Dalufishe
+- @the-az-dev
+- @Vocaloid2048
 
 ## Supporting Gen Express App
 
