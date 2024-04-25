@@ -39,9 +39,9 @@ To create a new workspace and initial starter app:
 eg new express-app
 ```
 
-### Note if you cannot using `eg` as global command
+### Note: if you cannot use `eg` as a global command
 
-If u have an error on using `eg` as global command, just try to use command below:
+If you get an error when using `eg` as a global command, try to use the command below:
 
 ```bash
 npx gen-express-app@latest new express-app
